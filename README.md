@@ -76,7 +76,7 @@ minikube addons enable ingress
 
 ### Create a secret
 ``` 
-kubectl create secret generic mysql-pass --from-literal=password='d245g7r8d2w3d6f1'
+kubectl create secret generic mysql-pass --from-literal=password='my_secret_pw'
 ```
 
 
