@@ -2,7 +2,6 @@ import pymysql
 from flask import jsonify
 from flask import flash, request
 from flaskext.mysql import MySQL
-import pymysql
 from flask import jsonify
 from flask import flash, request
 
@@ -15,13 +14,11 @@ import json
 import os
 
 # checking the port mentioned in env, if not then let's exit
-if os.environ.get("SERVE_PORT") == None or os.environ.get("DB_HOST") == None:
-    print("Environment variable SERVE_PORT or DB_HOST is not defined. Exiting.")
+if os.environ.get("SERVE_PORT") == None or os.environ.get("DB_HOST") == None or os.environ.get("DB_PW") == None:
+    print("Environment variable SERVE_PORT or DB_HOST or DB_PW is not defined. Exiting.")
     exit()
 
 app = Flask(__name__)
-
-
 
 # logging
 json_logging.init_flask(enable_json=True)
@@ -55,7 +52,6 @@ def users():
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("SELECT firstname, lastname, email FROM myguests")
-    # pass
         rows = cursor.fetchall()
         resp = jsonify(rows)
         

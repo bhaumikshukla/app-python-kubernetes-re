@@ -17,6 +17,7 @@ spec:
       containers:
         - name: api
           image: bhaumikshukla/re-app
+          imagePullPolicy: Always
           env:
            - name: SERVE_PORT
              value: "8080"
