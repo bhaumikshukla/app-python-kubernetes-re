@@ -69,6 +69,11 @@ Start minikube
 minikube start --vm=true --driver=hyperkit
 ```
 
+Enable ingress
+```
+minikube addons enable ingress
+```
+
 ### Create a secret
 ``` 
 kubectl create secret generic mysql-pass --from-literal=password='d245g7r8d2w3d6f1'
@@ -81,6 +86,7 @@ helm install example ./helm --set app.host=<fqdn> --set app.db_pw_secret=mysql-p
 ```          
 OR
 ```
+cd deployments
 helm install example ./helm  -f helm/values.yaml
 ```
 
@@ -88,6 +94,18 @@ helm install example ./helm  -f helm/values.yaml
 ## Usage
 
 Feel free to use the postman to check the  endpoint `/guests` is running. Make sure to take care about mentioning `host` in Header of the request.
+
+Get the IP address to request
+```
+kubectl get ing
+```
+
+This will show the IP address of the Ingress
+example:
+```
+NAME          CLASS    HOSTS             ADDRESS        PORTS   AGE
+api-ingress   <none>   api.bshukla.com   192.168.64.2   80      14h
+```
 
 Sample Request:
 ```
