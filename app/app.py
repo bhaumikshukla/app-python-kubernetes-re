@@ -14,8 +14,8 @@ import json
 import os
 
 # checking the port mentioned in env, if not then let's exit
-if os.environ.get("SERVE_PORT") == None or os.environ.get("DB_HOST") == None or os.environ.get("DB_PW") == None:
-    print("Environment variable SERVE_PORT or DB_HOST or DB_PW is not defined. Exiting.")
+if os.environ.get("SERVE_PORT") == None or os.environ.get("MYSQL_SERVICE_HOST") == None or os.environ.get("DB_PW") == None:
+    print("Environment variable SERVE_PORT or MYSQL_SERVICE_HOST or DB_PW is not defined. Exiting.")
     exit()
 
 app = Flask(__name__)
@@ -38,7 +38,7 @@ mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = os.environ.get("DB_PW")
 app.config['MYSQL_DATABASE_DB'] = 'sampledb'
-app.config['MYSQL_DATABASE_HOST'] = os.environ.get("DB_HOST")
+app.config['MYSQL_DATABASE_HOST'] = os.environ.get("MYSQL_SERVICE_HOST")
 mysql.init_app(app)
 
 '''

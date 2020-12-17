@@ -21,8 +21,6 @@ spec:
           env:
            - name: SERVE_PORT
              value: "8080"
-           - name: DB_HOST
-             value: "mysql"
            - name: DB_PW
              valueFrom:
               secretKeyRef:
